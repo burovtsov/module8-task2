@@ -37,13 +37,13 @@ public class Main
         }
     }
 
-    private static RouteCalculator getRouteCalculator()
+    public static RouteCalculator getRouteCalculator()
     {
         createStationIndex();
         return new RouteCalculator(stationIndex);
     }
 
-    private static void printRoute(List<Station> route)
+    public static void printRoute(List<Station> route)
     {
         Station previousStation = null;
         for(Station station : route)
@@ -63,11 +63,12 @@ public class Main
         }
     }
 
-    private static Station takeStation(String message)
+    public static Station takeStation(String message)
     {
         for(;;)
         {
             System.out.println(message);
+           // if (scanner == null) scanner = new Scanner(System.in); //added for success test
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
             if(station != null) {
@@ -77,7 +78,7 @@ public class Main
         }
     }
 
-    private static void createStationIndex()
+    public static void createStationIndex()
     {
         stationIndex = new StationIndex();
         try
@@ -99,7 +100,7 @@ public class Main
         }
     }
 
-    private static void parseConnections(JSONArray connectionsArray)
+    public static void parseConnections(JSONArray connectionsArray)
     {
         connectionsArray.forEach(connectionObject ->
         {
@@ -123,7 +124,7 @@ public class Main
         });
     }
 
-    private static void parseStations(JSONObject stationsObject)
+    public static void parseStations(JSONObject stationsObject)
     {
         stationsObject.keySet().forEach(lineNumberObject ->
         {
@@ -139,7 +140,7 @@ public class Main
         });
     }
 
-    private static void parseLines(JSONArray linesArray)
+    public static void parseLines(JSONArray linesArray)
     {
         linesArray.forEach(lineObject -> {
             JSONObject lineJsonObject = (JSONObject) lineObject;
@@ -151,7 +152,7 @@ public class Main
         });
     }
 
-    private static String getJsonFile()
+    public static String getJsonFile()
     {
         StringBuilder builder = new StringBuilder();
         try {
