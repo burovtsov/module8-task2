@@ -25,11 +25,12 @@ public class RouteCalculator
         }
 
         route = getRouteWithOneConnection(from, to);
-        if((route != null) && (route.size() != 0)){ //added "&& (route.size() != 0)"
-            return route;
+        if((route != null) && (route.size() != 0)) { //added "&& (route.size() != 0)"
+            List<Station> route2 = getRouteWithTwoConnections(from, to); //added to fix bug with don't checked route with two connections
+            if (calculateDuration(route2) < calculateDuration(route))    //added to fix bug with don't checked route with two connections
+                return route2;                                           //added to fix bug with don't checked route with two connections
+            else return route;                                           //added to fix bug with don't checked route with two connections
         }
-
-        route = getRouteWithTwoConnections(from, to);
         return route;
     }
 
