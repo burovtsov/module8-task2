@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="INFO">
+    <appenders>
+        <File name="find_stations" fileName="logs/find_stations.log" immediateFlush="true">
+            <PatternLayout pattern="%d{ISO8601} %-p- %m%n"/>
+        </File>
+
+        <File name="not_find_stations" fileName="logs/not_find_stations.log" immediateFlush="true">
+            <PatternLayout pattern="%d{ISO8601} %-p - %m%n"/>
+        </File>
+
+        <File name="errors" fileName="logs/errors.log" immediateFlush="true">
+            <PatternLayout pattern="%d{ISO8601} %-5p %L - %m%n"/>
+        </File>
+    </appenders>
+
+    <loggers>
+        <logger name="logStations" level="info" additivity="false">
+            <appender-ref ref="find_stations"/>
+        </logger>
+
+        <logger name="logNotFindStations" level="info" additivity="false">
+            <appender-ref ref="not_find_stations"/>
+        </logger>
+
+        <logger name="logErrors" level="error" additivity="false">
+            <appender-ref ref="errors"/>
+        </logger>
+    </loggers>
+</configuration>
