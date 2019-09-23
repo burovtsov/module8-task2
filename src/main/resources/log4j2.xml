@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appenders>
-        <File name="find_stations" fileName="logs/find_stations.log" immediateFlush="true">
+        <File name="Search" fileName="logs/search.log">
             <PatternLayout pattern="%d{ISO8601} %-p- %m%n"/>
+            <Filters>
+                <MarkerFilter marker = "INPUT_HISTORY"/>
+            </Filters>
         </File>
-
-        <File name="not_find_stations" fileName="logs/not_find_stations.log" immediateFlush="true">
-            <PatternLayout pattern="%d{ISO8601} %-p - %m%n"/>
+        <File name="InputErrors" fileName="logs/input_errors.log">
+            <PatternLayout pattern="%d{ISO8601} %-p- %m%n"/>
+            <Filters>
+                <MarkerFilter marker = "INVALID_STATIONS"/>
+            </Filters>
         </File>
-
-        <File name="errors" fileName="logs/errors.log" immediateFlush="true">
-            <PatternLayout pattern="%d{ISO8601} %-5p %L - %m%n"/>
+        <File name="Exceptions" fileName="logs/exceptions.log">
+            <PatternLayout pattern="%d{ISO8601} %-p- %m%n"/>
+            <Filters>
+                <MarkerFilter marker = "EXCEPTIONS"/>
+            </Filters>
         </File>
     </appenders>
 
     <loggers>
-        <logger name="logStations" level="info" additivity="false">
-            <appender-ref ref="find_stations"/>
-        </logger>
-
-        <logger name="logNotFindStations" level="info" additivity="false">
-            <appender-ref ref="not_find_stations"/>
-        </logger>
-
-        <logger name="logErrors" level="error" additivity="false">
-            <appender-ref ref="errors"/>
-        </logger>
+        <root level="info">
+            <appender-ref ref="Search" />
+            <appender-ref ref="InputErrors" />
+            <appender-ref ref="Exceptions" />
+        </root>
     </loggers>
 </configuration>
+
